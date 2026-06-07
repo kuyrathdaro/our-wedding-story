@@ -1,0 +1,684 @@
+---
+// RSVP.astro - Elegant interactive guest response form (Khmer & English Bilingual Switcher)
+---
+<section id="rsvp" class="rsvp-section">
+  <div class="rsvp-container">
+    <div class="section-header reveal-on-scroll">
+      <span class="section-subtitle">
+        <span class="lang-kh">ផ្ញើសារជូនពរ</span>
+        <span class="lang-en">Blessings & Wishes</span>
+      </span>
+      <h2 class="section-title khmer-title lang-kh">សារជូនពរពីភ្ញៀវកិត្តិយស</h2>
+      <h2 class="section-title english-title lang-en">Guest Book</h2>
+      
+      <!-- Custom Khmer traditional Kbach border decoration -->
+      <div class="khmer-ornament-divider">
+        <svg width="140" height="24" viewBox="0 0 140 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 12 L50 12 M130 12 L90 12" stroke="var(--accent-gold)" stroke-width="1"/>
+          <circle cx="10" cy="12" r="2.5" fill="var(--accent-gold)"/>
+          <circle cx="130" cy="12" r="2.5" fill="var(--accent-gold)"/>
+          <path d="M70 2 C73 7 73 17 70 22 C67 17 67 7 70 2 Z" fill="var(--accent-gold)"/>
+          <path d="M70 6 C75 9 75 15 70 18 C65 15 65 9 70 6 Z" fill="none" stroke="var(--bg-secondary)" stroke-width="0.75"/>
+          <path d="M62 12 C58 8 54 8 53 12 C54 16 58 16 62 12 Z" fill="var(--accent-gold)"/>
+          <path d="M78 12 C82 8 86 8 87 12 C86 16 82 16 78 12 Z" fill="var(--accent-gold)"/>
+        </svg>
+      </div>
+
+      <p class="section-intro khmer-text lang-kh">សូមសរសេរសារជូនពរដល់ពួកយើងទាំងពីរសម្រាប់ថ្ងៃដ៏ពិសេសនេះ។ យើងទន្ទឹងរង់ចាំយ៉ាងខ្លាំងក្នុងការអានសាររបស់លោកអ្នក!</p>
+      <p class="section-intro english-text lang-en">Please leave your warm wishes and blessings for our journey ahead. We look forward to reading your messages!</p>
+    </div>
+
+    <div class="rsvp-card-wrapper reveal-on-scroll">
+      <!-- Traditional Royal Crimson Red Card with Gold Details -->
+      <div class="rsvp-card">
+        <!-- RSVP Form Screen -->
+        <form id="rsvp-form" class="rsvp-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="guest-name">
+                <span class="label-khmer lang-kh">គោត្តនាម និងនាមខ្លួន</span>
+                <span class="label-english lang-en">Full Name</span>
+              </label>
+              <input type="text" id="guest-name" name="name" placeholder="ឧ. ចាន់ ម៉ាលី" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="guest-email">
+                <span class="label-khmer lang-kh">អាសយដ្ឋានសារអេឡិចត្រូនិច</span>
+                <span class="label-english lang-en">Email Address</span>
+              </label>
+              <input type="email" id="guest-email" name="email" placeholder="ឧ. name@example.com" required />
+            </div>
+          </div>
+
+
+
+          <div class="form-group">
+            <label for="message">
+              <span class="label-khmer lang-kh">សារជូនពរដល់គូស្វាមីភរិយាថ្មី</span>
+              <span class="label-english lang-en">Leave a message for the couple</span>
+            </label>
+            <textarea id="message" name="message" rows="4" placeholder="សូមសរសេរសារជូនពរ ឬមតិយោបល់នៅទីនេះ..."></textarea>
+          </div>
+
+          <button type="submit" id="submit-btn" class="submit-btn">
+            <span class="btn-text">
+              <span class="text-khmer lang-kh">ផ្ញើសារជូនពរ</span>
+              <span class="text-english lang-en">Send Wishes</span>
+            </span>
+            <span class="btn-spinner"></span>
+          </button>
+        </form>
+
+        <!-- RSVP Success Screen (Hidden by default) -->
+        <div id="rsvp-success" class="rsvp-success" aria-hidden="true">
+          <!-- Khmer traditional Sampeah greeting SVG hands -->
+          <div class="success-icon khmer-sampeah-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 100 100" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M50 20 C47 38 38 58 35 66 C32 74 41 84 50 84" />
+              <path d="M50 20 C53 38 62 58 65 66 C68 74 59 84 50 84" />
+              <path d="M50 20 L50 84" stroke-dasharray="1 2" stroke-width="1"/>
+              <path d="M47 30 C45 40 40 50 38 58" stroke-width="0.8" />
+              <path d="M53 30 C55 40 60 50 62 58" stroke-width="0.8" />
+              <path d="M44 42 C43 49 40 57 39 62" stroke-width="0.8" />
+              <path d="M56 42 C57 49 60 57 61 62" stroke-width="0.8" />
+              <path d="M50 12 C40 10 30 25 35 45 C20 40 10 50 20 68 C25 75 35 85 50 90" stroke-width="0.75" stroke-dasharray="3,3" />
+              <path d="M50 12 C60 10 70 25 65 45 C80 40 90 50 80 68 C75 75 65 85 50 90" stroke-width="0.75" stroke-dasharray="3,3" />
+            </svg>
+          </div>
+          
+          <h3 class="success-title lang-kh">សូមអរគុណ!</h3>
+          <h3 class="success-title lang-en">Thank You!</h3>
+          
+          <p class="success-message lang-kh" id="success-msg-khmer">សារជូនពររបស់អ្នកត្រូវបានផ្ញើជូនដោយជោគជ័យ។ យើងពិតជាមានសេចក្តីសោមនស្សរីករាយក្រៃលែងសម្រាប់ពាក្យជូនពរដ៏មានអត្ថន័យរបស់លោកអ្នក!</p>
+          <p class="success-message lang-en" id="success-msg-english">Your message has been sent successfully. Thank you so much for your warm wishes!</p>
+          
+          <button type="button" id="rsvp-reset-btn" class="reset-btn">
+            <span class="lang-kh">ផ្ញើសារជូនពរម្តងទៀត</span>
+            <span class="lang-en">Send Another Message</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const rsvpForm = document.getElementById('rsvp-form') as HTMLFormElement;
+  const rsvpSuccess = document.getElementById('rsvp-success');
+  const submitBtn = document.getElementById('submit-btn');
+  const successMsgKhmer = document.getElementById('success-msg-khmer');
+  const successMsgEnglish = document.getElementById('success-msg-english');
+  const resetBtn = document.getElementById('rsvp-reset-btn');
+  
+  const guestNameInput = document.getElementById('guest-name') as HTMLInputElement;
+  const guestEmailInput = document.getElementById('guest-email') as HTMLInputElement;
+  const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+
+  const placeholders = {
+    kh: {
+      name: 'ឧ. ចាន់ ម៉ាលី',
+      email: 'ឧ. name@example.com',
+      message: 'សូមសរសេរសារជូនពរ ឬមតិយោបល់នៅទីនេះ...'
+    },
+    en: {
+      name: 'E.g., Chan Maly',
+      email: 'E.g., name@example.com',
+      message: 'Write your blessings here...'
+    }
+  };
+
+  function updatePlaceholders() {
+    const currentLang = (document.documentElement.getAttribute('data-lang') || 'kh') as 'kh' | 'en';
+    const langPlaceholders = placeholders[currentLang] || placeholders.kh;
+    
+    if (guestNameInput) guestNameInput.placeholder = langPlaceholders.name;
+    if (guestEmailInput) guestEmailInput.placeholder = langPlaceholders.email;
+    if (messageInput) messageInput.placeholder = langPlaceholders.message;
+  }
+
+  // Initial call
+  updatePlaceholders();
+
+  // Observe language attribute changes
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-lang') {
+        updatePlaceholders();
+      }
+    });
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-lang']
+  });
+
+  // Handle submit action
+  rsvpForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Add loading class to button
+    submitBtn?.classList.add('loading');
+    
+    const formData = new FormData(rsvpForm);
+    const guestName = formData.get('name') as string;
+    
+    // Simulate API request
+    setTimeout(() => {
+      submitBtn?.classList.remove('loading');
+      
+      if (rsvpForm && rsvpSuccess) {
+        rsvpForm.style.display = 'none';
+        rsvpSuccess.classList.add('active');
+        rsvpSuccess.setAttribute('aria-hidden', 'false');
+        
+        if (successMsgKhmer) {
+          successMsgKhmer.innerText = `សូមអរគុណ ${guestName}! សារជូនពររបស់អ្នកត្រូវបានផ្ញើជូនដោយជោគជ័យ។ យើងពិតជាមានសេចក្តីសោមនស្សរីករាយក្រៃលែងសម្រាប់ពាក្យជូនពរដ៏មានអត្ថន័យរបស់លោកអ្នក!`;
+        }
+        if (successMsgEnglish) {
+          successMsgEnglish.innerText = `Thank you, ${guestName}! Your message has been sent successfully. We appreciate your warm wishes!`;
+        }
+      }
+    }, 1500);
+  });
+
+  // Reset form
+  resetBtn?.addEventListener('click', () => {
+    if (rsvpForm && rsvpSuccess) {
+      rsvpForm.reset();
+      rsvpForm.style.display = 'block';
+      rsvpSuccess.classList.remove('active');
+      rsvpSuccess.setAttribute('aria-hidden', 'true');
+    }
+  });
+</script>
+
+<style>
+  .rsvp-section {
+    padding: 120px 24px;
+    background-color: var(--bg-secondary);
+    position: relative;
+  }
+
+  .rsvp-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 80px auto;
+  }
+
+  .section-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-gold);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle .lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+  }
+
+  .section-title {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .section-title.khmer-title {
+    font-family: var(--font-khmer-header);
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+
+  .section-title.english-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+  }
+
+  .khmer-ornament-divider {
+    margin: 16px auto 28px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .section-intro {
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 620px;
+  }
+
+  .section-intro.khmer-text {
+    font-family: var(--font-khmer-body);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .section-intro.english-text {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  /* RSVP Traditional Khmer Silk Card (Crimson & Gold) */
+  .rsvp-card-wrapper {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .rsvp-card {
+    background: linear-gradient(135deg, var(--accent-red) 0%, #4A0E10 100%);
+    border-radius: 20px;
+    padding: 60px;
+    border: 2px solid var(--accent-gold); /* Gold border wrapper */
+    box-shadow: 0 25px 60px rgba(74, 14, 16, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Stylized gold leaf overlays inside card corners */
+  .rsvp-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-top: 2px solid var(--accent-gold);
+    border-left: 2px solid var(--accent-gold);
+    border-top-left-radius: 12px;
+    margin: 10px;
+    pointer-events: none;
+  }
+
+  .rsvp-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-bottom: 2px solid var(--accent-gold);
+    border-right: 2px solid var(--accent-gold);
+    border-bottom-right-radius: 12px;
+    margin: 10px;
+    pointer-events: none;
+  }
+
+  /* Form Elements CSS */
+  .rsvp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .label-khmer {
+    font-family: var(--font-khmer-body);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--accent-gold); /* Gold labels */
+  }
+
+  .label-english {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(250, 247, 242, 0.85); /* Ivory secondary labels */
+  }
+
+  /* Stylized input overrides for red background */
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group select,
+  .form-group textarea {
+    padding: 14px 18px;
+    border: 1px solid rgba(212, 175, 55, 0.35); /* Translucent gold border */
+    background-color: rgba(250, 247, 242, 0.08); /* Ivory tint */
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #FAF7F2;
+    outline: none;
+    transition: var(--transition-smooth);
+    width: 100%;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(250, 247, 242, 0.35);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+    background-color: rgba(250, 247, 242, 0.12);
+  }
+
+  .form-group select option {
+    background-color: #4A0E10; /* Dark background inside options */
+    color: #FAF7F2;
+  }
+
+  /* Custom radio styling on red background */
+  .radio-group {
+    display: flex;
+    gap: 40px;
+    margin-top: 6px;
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+  }
+
+  .radio-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .custom-radio {
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--accent-gold);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    background-color: rgba(250, 247, 242, 0.08);
+    transition: var(--transition-smooth);
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .radio-label:hover input ~ .custom-radio {
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+  }
+
+  .radio-label input:checked ~ .custom-radio {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+  }
+
+  .radio-label input:checked ~ .custom-radio::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #4A0E10; /* Red core */
+  }
+
+  .radio-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .radio-khmer {
+    font-family: var(--font-khmer-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #FAF7F2;
+  }
+
+  .radio-english {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: rgba(250, 247, 242, 0.75);
+  }
+
+  /* Animating details panel */
+  .attendance-details {
+    max-height: 200px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+  }
+
+  .attendance-details.hide {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Submit Button Styles (Gold themed on Crimson background) */
+  .submit-btn {
+    margin-top: 12px;
+    padding: 18px;
+    background-color: var(--accent-gold);
+    color: #4A0E10;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .submit-btn:hover {
+    background-color: #FAF7F2;
+    color: var(--accent-red);
+    box-shadow: 0 6px 22px rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .btn-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.3;
+  }
+
+  .text-khmer {
+    font-family: var(--font-khmer-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .text-english {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+  }
+
+  .submit-btn .btn-spinner {
+    display: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid rgba(74, 14, 16, 0.3);
+    border-top: 2px solid #4A0E10;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .submit-btn.loading .btn-text {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .submit-btn.loading .btn-spinner {
+    display: block;
+    position: absolute;
+  }
+
+  /* Success Screen styles */
+  .rsvp-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 0;
+    animation: fadeIn 0.6s ease forwards;
+    position: relative;
+    z-index: 2;
+  }
+
+  .rsvp-success.active {
+    display: flex;
+  }
+
+  .khmer-sampeah-icon {
+    margin-bottom: 24px;
+    animation: popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Render clasped hands in gold */
+  .khmer-sampeah-icon svg {
+    stroke: var(--accent-gold);
+  }
+
+  .success-title {
+    color: #FFFFFF;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .success-title.lang-kh {
+    font-family: var(--font-khmer-header);
+    font-size: 2.2rem;
+    font-weight: normal;
+    margin-bottom: 6px;
+  }
+
+  .success-title.lang-en {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+
+  .success-message {
+    max-width: 520px;
+    line-height: 1.75;
+  }
+
+  .success-message.lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 1.05rem;
+    color: #FAF7F2;
+    margin-bottom: 12px;
+  }
+
+  .success-message.lang-en {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: rgba(250, 247, 242, 0.85);
+    margin-bottom: 36px;
+  }
+
+  .reset-btn {
+    padding: 12px 28px;
+    background: none;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--accent-gold);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    font-size: 0.85rem;
+  }
+
+  .reset-btn:hover {
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    background-color: rgba(250, 247, 242, 0.05);
+  }
+
+  .reset-btn .lang-kh {
+    font-family: var(--font-khmer-body);
+    font-weight: 600;
+  }
+
+  .reset-btn .lang-en {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Animations */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .rsvp-card {
+      padding: 40px 24px;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .radio-group {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+</style>

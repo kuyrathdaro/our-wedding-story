@@ -1,0 +1,420 @@
+---
+// Hero.astro - Welcome banner with live countdown timer
+---
+<section id="home" class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-subtitle">
+      <span class="lang-kh">សូមគោរពអញ្ជើញចូលរួមមង្គលការ</span>
+      <span class="lang-en">Save The Date</span>
+    </p>
+    <h1 class="hero-title">
+      <span class="lang-kh logo-kh">ដារ៉ូ <span class="heart-icon">&hearts;</span> កូនក្រមុំ</span>
+      <span class="lang-en">Daro <span class="heart-icon">&hearts;</span> Bride</span>
+    </h1>
+    <div class="divider-line"></div>
+    <p class="hero-date-text">
+      <span class="lang-kh">ថ្ងៃសៅរ៍ ទី១៧ ខែតុលា ឆ្នាំ២០២៦ • រាជធានីភ្នំពេញ</span>
+      <span class="lang-en">Saturday, October 17, 2026 • Phnom Penh, Cambodia</span>
+    </p>
+    
+    <!-- Countdown Timer -->
+    <div class="countdown-container" id="countdown" data-date="2026-10-17T15:00:00">
+      <!-- Row 1: Values and separators -->
+      <div class="countdown-value-wrapper" style="grid-column: 1; grid-row: 1;">
+        <span class="countdown-value" id="days">00</span>
+      </div>
+      <div class="countdown-separator" style="grid-column: 2; grid-row: 1;">:</div>
+      
+      <div class="countdown-value-wrapper" style="grid-column: 3; grid-row: 1;">
+        <span class="countdown-value" id="hours">00</span>
+      </div>
+      <div class="countdown-separator" style="grid-column: 4; grid-row: 1;">:</div>
+      
+      <div class="countdown-value-wrapper" style="grid-column: 5; grid-row: 1;">
+        <span class="countdown-value" id="minutes">00</span>
+      </div>
+      <div class="countdown-separator" style="grid-column: 6; grid-row: 1;">:</div>
+      
+      <div class="countdown-value-wrapper" style="grid-column: 7; grid-row: 1;">
+        <span class="countdown-value" id="seconds">00</span>
+      </div>
+      
+      <!-- Row 2: Labels aligned to columns -->
+      <span class="countdown-label" style="grid-column: 1; grid-row: 2;">
+        <span class="lang-kh">ថ្ងៃ</span>
+        <span class="lang-en">Days</span>
+      </span>
+      
+      <span class="countdown-label" style="grid-column: 3; grid-row: 2;">
+        <span class="lang-kh">ម៉ោង</span>
+        <span class="lang-en">Hours</span>
+      </span>
+      
+      <span class="countdown-label" style="grid-column: 5; grid-row: 2;">
+        <span class="lang-kh">នាទី</span>
+        <span class="lang-en">Mins</span>
+      </span>
+      
+      <span class="countdown-label" style="grid-column: 7; grid-row: 2;">
+        <span class="lang-kh">វិនាទី</span>
+        <span class="lang-en">Secs</span>
+      </span>
+    </div>
+  </div>
+  
+  <a href="#story" class="scroll-down" aria-label="Scroll to our story">
+    <span class="scroll-text">
+      <span class="lang-kh">ដំណើររឿងរ៉ាវ</span>
+      <span class="lang-en">Our Story</span>
+    </span>
+    <span class="scroll-arrow"></span>
+  </a>
+</section>
+
+<script>
+  function initCountdown() {
+    const countdownEl = document.getElementById('countdown');
+    if (!countdownEl) return;
+
+    const targetDateStr = countdownEl.getAttribute('data-date');
+    if (!targetDateStr) return;
+
+    const targetDate = new Date(targetDateStr).getTime();
+
+    const daysVal = document.getElementById('days');
+    const hoursVal = document.getElementById('hours');
+    const minutesVal = document.getElementById('minutes');
+    const secondsVal = document.getElementById('seconds');
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        if (countdownEl) {
+          countdownEl.innerHTML = `
+            <div class='wedding-day-message'>
+              <span class='lang-kh'>មង្គលការថ្ងៃនេះហើយ!</span>
+              <span class='lang-en'>The Big Day is Today!</span>
+            </div>`;
+        }
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      const daysStr = String(days).padStart(2, '0');
+      const hoursStr = String(hours).padStart(2, '0');
+      const minutesStr = String(minutes).padStart(2, '0');
+      const secondsStr = String(seconds).padStart(2, '0');
+
+      const toKhmerNum = (str: string) => {
+        const khmerDigits = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩'];
+        return str.replace(/\d/g, (d: string) => khmerDigits[parseInt(d, 10)]);
+      };
+
+      if (daysVal) daysVal.innerHTML = `<span class="lang-en">${daysStr}</span><span class="lang-kh">${toKhmerNum(daysStr)}</span>`;
+      if (hoursVal) hoursVal.innerHTML = `<span class="lang-en">${hoursStr}</span><span class="lang-kh">${toKhmerNum(hoursStr)}</span>`;
+      if (minutesVal) minutesVal.innerHTML = `<span class="lang-en">${minutesStr}</span><span class="lang-kh">${toKhmerNum(minutesStr)}</span>`;
+      if (secondsVal) secondsVal.innerHTML = `<span class="lang-en">${secondsStr}</span><span class="lang-kh">${toKhmerNum(secondsStr)}</span>`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  }
+
+  // Initialize on page load
+  initCountdown();
+</script>
+
+<style>
+  .hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/images/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Traditional red accent tinted linear gradient overlay */
+    background: linear-gradient(
+      to bottom,
+      rgba(139, 30, 34, 0.45) 0%,
+      rgba(28, 27, 25, 0.6) 60%,
+      rgba(28, 27, 25, 0.85) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #FAF7F2; /* Cream text on dark overlay */
+    max-width: 850px;
+    padding: 0 24px;
+    animation: fadeInScale 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--accent-gold);
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle .lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    line-height: 1.35; /* Spacious leading to prevent top vowel marker clipping */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+
+  .hero-title span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-title .logo-kh {
+    font-family: var(--font-khmer-header);
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: normal;
+  }
+
+  .heart-icon {
+    color: var(--accent-gold);
+    margin: 0 16px; /* Add extra spacing to prevent overlapping Khmer vowel marks */
+    display: inline-block;
+  }
+
+  .divider-line {
+    width: 60px;
+    height: 1.5px;
+    background-color: var(--accent-gold);
+    margin: 0 auto 24px auto;
+  }
+
+  .hero-date-text {
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    margin-bottom: 48px;
+    color: rgba(250, 247, 242, 0.9);
+  }
+
+  .hero-date-text .lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* Countdown CSS */
+  .countdown-container {
+    display: grid;
+    grid-template-columns: 75px 12px 75px 12px 75px 12px 75px;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+    row-gap: 4px;
+    margin: 0 auto;
+    background: rgba(250, 247, 242, 0.07);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 24px 36px;
+    border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-width: max-content;
+  }
+
+  .countdown-value-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.8rem; /* Set explicit height to align with colons */
+  }
+
+  .countdown-value {
+    font-family: var(--font-sans); /* Use sans-serif for uniform lining digits */
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #FFFFFF;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Reset line height for Khmer numbers in countdown value */
+  .countdown-value span.lang-kh {
+    font-family: var(--font-khmer-body);
+    line-height: 1;
+    display: inline-block;
+  }
+
+  .countdown-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-gold);
+    text-align: center;
+    display: block;
+  }
+
+  .countdown-label .lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 0.8rem;
+    letter-spacing: 0;
+  }
+
+  .countdown-separator {
+    font-family: var(--font-sans);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    height: 2.8rem; /* Match the value wrapper height for perfect vertical centering */
+  }
+
+  .wedding-day-message {
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    letter-spacing: 0.05em;
+  }
+
+  .wedding-day-message .lang-kh {
+    font-family: var(--font-khmer-header);
+    font-size: 1.6rem;
+  }
+
+  /* Scroll prompt */
+  .scroll-down {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: rgba(250, 247, 242, 0.7);
+    transition: var(--transition-smooth);
+  }
+
+  .scroll-down:hover {
+    color: #FFFFFF;
+  }
+
+  .scroll-text {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+  }
+
+  .scroll-text .lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+  }
+
+  .scroll-arrow {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(250, 247, 242, 0.7) 50%, transparent 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-arrow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: var(--accent-gold);
+    animation: scrollAnim 2s infinite ease-in-out;
+  }
+
+  /* Keyframe Animations */
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes scrollAnim {
+    0% {
+      transform: translateY(-100%);
+    }
+    50% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(200%);
+    }
+  }
+
+  /* Responsive styling */
+  @media (max-width: 600px) {
+    .countdown-container {
+      grid-template-columns: 55px 8px 55px 8px 55px 8px 55px;
+      padding: 16px 20px;
+      column-gap: 4px;
+    }
+
+    .countdown-value-wrapper {
+      height: 2rem;
+    }
+
+    .countdown-value {
+      font-size: 1.8rem;
+    }
+
+    .countdown-separator {
+      font-size: 1.5rem;
+      height: 2rem;
+    }
+  }
+</style>

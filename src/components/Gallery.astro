@@ -1,0 +1,489 @@
+---
+// Gallery.astro - Pre-Wedding Photos & Lightbox Viewer (Bilingual)
+const photos = [
+  { 
+    src: '/images/gallery_2.png', 
+    altKh: 'ឈរលើកំពូលភ្នំក្បែរមាត់សមុទ្រនាពេលថ្ងៃលិច', 
+    altEn: 'Standing on a clifftop ocean overlook at sunset' 
+  },
+  { 
+    src: '/images/gallery_3.png', 
+    altKh: 'រូបភាពជិតនៃការកាន់ដៃគ្នាបង្ហាញចិញ្ចៀនភ្ជាប់ពាក្យ', 
+    altEn: 'Close-up of couple holding hands showing engagement ring' 
+  },
+  { 
+    src: '/images/gallery_1.png', 
+    altKh: 'ការដើរលេង និងសើចសប្បាយក្នុងសួនច្បារនាដូវស្លឹកឈើជ្រុះ', 
+    altEn: 'Couple walking and laughing in a sun-drenched autumn park' 
+  },
+  { 
+    src: '/images/gallery_4.png', 
+    altKh: 'ការរាំលេងកម្សាន្តក្នុងសាលសួនច្បារនាពេលល្ងាច', 
+    altEn: 'Couple dancing in historic garden pavilion under string lights' 
+  }
+];
+---
+<section id="gallery" class="gallery-section">
+  <div class="gallery-container">
+    <div class="section-header reveal-on-scroll">
+      <span class="section-subtitle">
+        <span class="lang-kh">ការចងចាំដ៏ស្រស់ស្អាត</span>
+        <span class="lang-en">Moments Captured</span>
+      </span>
+      <h2 class="section-title khmer-title lang-kh">រូបភាពអនុស្សាវរីយ៍</h2>
+      <h2 class="section-title english-title lang-en">Pre-Wedding Gallery</h2>
+      
+      <!-- Custom Khmer traditional Kbach border decoration -->
+      <div class="khmer-ornament-divider">
+        <svg width="140" height="24" viewBox="0 0 140 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 12 L50 12 M130 12 L90 12" stroke="var(--accent-gold)" stroke-width="1"/>
+          <circle cx="10" cy="12" r="2.5" fill="var(--accent-gold)"/>
+          <circle cx="130" cy="12" r="2.5" fill="var(--accent-gold)"/>
+          <path d="M70 2 C73 7 73 17 70 22 C67 17 67 7 70 2 Z" fill="var(--accent-gold)"/>
+          <path d="M70 6 C75 9 75 15 70 18 C65 15 65 9 70 6 Z" fill="none" stroke="var(--bg-secondary)" stroke-width="0.75"/>
+          <path d="M62 12 C58 8 54 8 53 12 C54 16 58 16 62 12 Z" fill="var(--accent-gold)"/>
+          <path d="M78 12 C82 8 86 8 87 12 C86 16 82 16 78 12 Z" fill="var(--accent-gold)"/>
+        </svg>
+      </div>
+
+      <p class="section-intro khmer-text lang-kh">កម្រងរូបភាពអនុស្សាវរីយ៍ដ៏ស្រស់ស្អាតមួយចំនួន ដែលបានថតមុនថ្ងៃមង្គលការរបស់យើងទាំងពីរចូលមកដល់។</p>
+      <p class="section-intro english-text lang-en">A collection of some of our favorite memories captured leading up to our wedding day.</p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      {photos.map((photo, index) => (
+        <div class="gallery-item reveal-on-scroll" data-index={index}>
+          <img src={photo.src} alt={photo.altEn} class="gallery-img" loading="lazy" />
+          <div class="gallery-hover-overlay">
+            <span class="gallery-view-btn">
+              <span class="lang-kh">មើលរូបភាព</span>
+              <span class="lang-en">View Photo</span>
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox-modal" aria-hidden="true" role="dialog">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#10094;</button>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">&#10095;</button>
+    
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="" />
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ photos }}>
+  let currentIdx = 0;
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  function openLightbox(index) {
+    currentIdx = index;
+    updateLightboxContent();
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('no-scroll');
+  }
+
+  function showNext() {
+    currentIdx = (currentIdx + 1) % photos.length;
+    updateLightboxContent();
+  }
+
+  function showPrev() {
+    currentIdx = (currentIdx - 1 + photos.length) % photos.length;
+    updateLightboxContent();
+  }
+
+  function updateLightboxContent() {
+    const photo = photos[currentIdx];
+    if (lightboxImg) {
+      lightboxImg.src = photo.src;
+      lightboxImg.alt = photo.altEn;
+    }
+    if (lightboxCaption) {
+      lightboxCaption.innerHTML = '';
+      
+      // Inject bilingual elements so CSS automatically switches display
+      const khSpan = document.createElement('span');
+      khSpan.className = 'lang-kh';
+      khSpan.textContent = photo.altKh;
+      
+      const enSpan = document.createElement('span');
+      enSpan.className = 'lang-en';
+      enSpan.textContent = photo.altEn;
+      
+      lightboxCaption.appendChild(khSpan);
+      lightboxCaption.appendChild(enSpan);
+    }
+  }
+
+  // Click on gallery item to open
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const idx = parseInt(item.getAttribute('data-index') || '0', 10);
+      openLightbox(idx);
+    });
+  });
+
+  // Event Listeners
+  closeBtn?.addEventListener('click', closeLightbox);
+  prevBtn?.addEventListener('click', showPrev);
+  nextBtn?.addEventListener('click', showNext);
+
+  // Close when clicking outside the image
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target === lightbox.querySelector('.lightbox-content')) {
+      closeLightbox();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox?.classList.contains('active')) return;
+    
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+</script>
+
+<style>
+  .gallery-section {
+    padding: 120px 24px;
+    background-color: var(--bg-secondary);
+  }
+
+  .gallery-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 80px auto;
+  }
+
+  .section-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-gold);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle .lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+  }
+
+  .section-title {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .section-title.khmer-title {
+    font-family: var(--font-khmer-header);
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+
+  .section-title.english-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+  }
+
+  .section-intro {
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 620px;
+  }
+
+  .section-intro.khmer-text {
+    font-family: var(--font-khmer-body);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .section-intro.english-text {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  /* Gallery Grid CSS */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+  }
+
+  @media (min-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(12, 1fr);
+    }
+    
+    .gallery-item:nth-child(1) {
+      grid-column: span 7;
+    }
+    .gallery-item:nth-child(2) {
+      grid-column: span 5;
+    }
+    .gallery-item:nth-child(3) {
+      grid-column: span 5;
+    }
+    .gallery-item:nth-child(4) {
+      grid-column: span 7;
+    }
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .gallery-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Traditional red accent tinted linear overlay */
+    background-color: rgba(139, 30, 34, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(2px);
+  }
+
+  .gallery-item:hover .gallery-img {
+    transform: scale(1.05);
+  }
+
+  .gallery-item:hover .gallery-hover-overlay {
+    opacity: 1;
+  }
+
+  .gallery-view-btn {
+    font-size: 1rem;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 24px;
+    border-radius: 30px;
+    background: rgba(28, 27, 25, 0.3);
+    transform: translateY(10px);
+    transition: var(--transition-smooth);
+    display: inline-block;
+  }
+
+  .gallery-view-btn span.lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 0.9rem;
+  }
+
+  .gallery-view-btn span.lang-en {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+  }
+
+  .gallery-item:hover .gallery-view-btn {
+    transform: translateY(0);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+  }
+
+  /* Lightbox Modal CSS */
+  .lightbox-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(28, 27, 25, 0.96);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .lightbox-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .lightbox-caption {
+    margin-top: 16px;
+    color: rgba(250, 247, 242, 0.85);
+    font-size: 1.1rem;
+    font-style: italic;
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .lightbox-caption span.lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 1.05rem;
+    font-style: normal;
+  }
+
+  .lightbox-caption span.lang-en {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+  }
+
+  /* Buttons */
+  .lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 3rem;
+    color: rgba(250, 247, 242, 0.6);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    line-height: 1;
+    z-index: 2001;
+  }
+
+  .lightbox-close:hover {
+    color: #FFFFFF;
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: rgba(250, 247, 242, 0.6);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    padding: 20px;
+    z-index: 2001;
+  }
+
+  .lightbox-nav:hover {
+    color: #FFFFFF;
+    background-color: rgba(250, 247, 242, 0.05);
+    border-radius: 50%;
+  }
+
+  .lightbox-prev {
+    left: 20px;
+  }
+
+  .lightbox-next {
+    right: 20px;
+  }
+
+  :global(body.no-scroll) {
+    overflow: hidden !important;
+  }
+
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .gallery-item {
+      aspect-ratio: 4/3 !important;
+    }
+
+    .lightbox-nav {
+      font-size: 2rem;
+      padding: 10px;
+    }
+    .lightbox-prev {
+      left: 5px;
+    }
+    .lightbox-next {
+      right: 5px;
+    }
+    .lightbox-close {
+      top: 15px;
+      right: 15px;
+    }
+  }
+</style>
