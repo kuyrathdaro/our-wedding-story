@@ -1,7 +1,10 @@
 ---
 // Hero.astro - Welcome banner with live countdown timer
+import { getCloudinaryUrl } from '../utils/cloudinary';
+
+const heroBgUrl = getCloudinaryUrl('hero');
 ---
-<section id="home" class="hero-section">
+<section id="home" class="hero-section" style={`--hero-bg: url('${heroBgUrl}')`}>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-subtitle">
@@ -139,7 +142,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/images/hero.png');
+    background-image: var(--hero-bg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

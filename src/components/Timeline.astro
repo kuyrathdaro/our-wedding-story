@@ -1,5 +1,6 @@
 ---
 // Timeline.astro - Our Love Story Timeline (Bilingual)
+import { getCloudinaryUrl } from '../utils/cloudinary';
 ---
 <section id="story" class="story-section">
   <div class="story-container">
@@ -34,7 +35,7 @@
       <!-- Node 1 -->
       <div class="timeline-item reveal-on-scroll">
         <div class="timeline-img-container">
-          <img src="/images/story_meet.png" alt="First Meet" class="timeline-img" />
+          <img src={getCloudinaryUrl('story_meet', { width: 800 })} alt="First Meet" class="timeline-img" loading="lazy" />
         </div>
         <div class="timeline-content">
           <div class="timeline-date">
@@ -56,7 +57,7 @@
       <!-- Node 2 -->
       <div class="timeline-item reveal-on-scroll">
         <div class="timeline-img-container">
-          <img src="/images/gallery_1.png" alt="First Date" class="timeline-img" />
+          <img src={getCloudinaryUrl('gallery_1', { width: 800 })} alt="First Date" class="timeline-img" loading="lazy" />
         </div>
         <div class="timeline-content">
           <div class="timeline-date">
@@ -78,7 +79,7 @@
       <!-- Node 3 -->
       <div class="timeline-item reveal-on-scroll">
         <div class="timeline-img-container">
-          <img src="/images/story_proposal.png" alt="The Proposal" class="timeline-img" />
+          <img src={getCloudinaryUrl('story_proposal', { width: 800 })} alt="The Proposal" class="timeline-img" loading="lazy" />
         </div>
         <div class="timeline-content">
           <div class="timeline-date">
