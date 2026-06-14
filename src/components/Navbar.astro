@@ -14,13 +14,13 @@
         </li>
         <li>
           <a href="#story" class="nav-link">
-            <span class="lang-kh">ដំណើររឿងរ៉ាវ</span>
+            <span class="lang-kh">រឿងរ៉ាវស្នេហា</span>
             <span class="lang-en">Our Story</span>
           </a>
         </li>
         <li>
           <a href="#gallery" class="nav-link">
-            <span class="lang-kh">រូបភាពអនុស្សាវរីយ៍</span>
+            <span class="lang-kh">កម្រងរូបភាព</span>
             <span class="lang-en">Gallery</span>
           </a>
         </li>
@@ -31,14 +31,20 @@
           </a>
         </li>
         <li>
-          <a href="#rsvp" class="nav-link btn-rsvp">
+          <a href="#thankyou" class="nav-link">
+            <span class="lang-kh">អំណរគុណ</span>
+            <span class="lang-en">Thank You</span>
+          </a>
+        </li>
+        <li>
+          <a href="#rsvp" class="nav-link">
             <span class="lang-kh">ផ្ញើសារជូនពរ</span>
             <span class="lang-en">Wishes</span>
           </a>
         </li>
         <li class="lang-switcher-item">
           <div class="lang-switcher">
-            <button type="button" class="lang-btn" data-set-lang="kh" aria-label="ភាសាខ្មែរ">ខ្មែរ</button>
+            <button type="button" class="lang-btn" data-set-lang="kh" aria-label="Khmer">KH</button>
             <span class="lang-divider">/</span>
             <button type="button" class="lang-btn" data-set-lang="en" aria-label="English">EN</button>
           </div>
@@ -241,38 +247,6 @@
     color: var(--accent-red);
   }
 
-  .btn-rsvp {
-    display: inline-block;
-    padding: 8px 18px !important;
-    border: 1px solid #FFFFFF;
-    border-radius: 20px;
-    color: #FFFFFF;
-    background-color: transparent;
-    transition: var(--transition-smooth);
-  }
-
-  .main-header.scrolled .btn-rsvp {
-    border: 1px solid var(--accent-red);
-    color: var(--accent-red);
-  }
-
-  .btn-rsvp::after {
-    display: none;
-  }
-
-  .btn-rsvp:hover {
-    background-color: #FFFFFF;
-    color: var(--text-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-  }
-
-  .main-header.scrolled .btn-rsvp:hover {
-    background-color: var(--accent-red);
-    color: var(--bg-primary);
-    box-shadow: 0 4px 12px rgba(139, 30, 34, 0.25);
-  }
-
   /* Language Switcher Styling */
   .lang-switcher {
     display: inline-flex;
@@ -409,18 +383,6 @@
 
     .nav-link .lang-kh {
       font-size: 1.25rem;
-    }
-
-    .btn-rsvp {
-      font-size: 1.15rem;
-      padding: 10px 24px !important;
-      color: var(--accent-red);
-      border-color: var(--accent-red);
-    }
-    
-    .btn-rsvp:hover {
-      background-color: var(--accent-red);
-      color: var(--bg-primary);
     }
 
     .lang-switcher-item {

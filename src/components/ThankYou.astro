@@ -1,0 +1,259 @@
+---
+// ThankYou.astro - Elegant Thank You & Wishing Message from the Couple
+---
+<section id="thankyou" class="thankyou-section">
+  <div class="thankyou-container">
+    <div class="section-header reveal-on-scroll">
+      <span class="section-subtitle">
+        <span class="lang-kh">សេចក្តីថ្លែងអំណរគុណ</span>
+        <span class="lang-en">With Gratitude</span>
+      </span>
+      <h2 class="section-title khmer-title lang-kh">ពាក្យជូនពរពីយើងខ្ញុំ</h2>
+      <h2 class="section-title english-title lang-en">Thank You</h2>
+      
+      <!-- Custom Khmer traditional Kbach border decoration -->
+      <div class="khmer-ornament-divider">
+        <svg width="140" height="24" viewBox="0 0 140 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 12 L50 12 M130 12 L90 12" stroke="var(--accent-gold)" stroke-width="1"/>
+          <circle cx="10" cy="12" r="2.5" fill="var(--accent-gold)"/>
+          <circle cx="130" cy="12" r="2.5" fill="var(--accent-gold)"/>
+          <path d="M70 2 C73 7 73 17 70 22 C67 17 67 7 70 2 Z" fill="var(--accent-gold)"/>
+          <path d="M70 6 C75 9 75 15 70 18 C65 15 65 9 70 6 Z" fill="none" stroke="var(--bg-secondary)" stroke-width="0.75"/>
+          <path d="M62 12 C58 8 54 8 53 12 C54 16 58 16 62 12 Z" fill="var(--accent-gold)"/>
+          <path d="M78 12 C82 8 86 8 87 12 C86 16 82 16 78 12 Z" fill="var(--accent-gold)"/>
+        </svg>
+      </div>
+
+      <p class="section-intro khmer-text lang-kh">យើងខ្ញុំទាំងពីរ ពិតជាមានសេចក្តីសោមនស្សរីករាយក្រៃលែង ដែលបានអញ្ជើញលោកអ្នកមកចូលរួមជាភ្ញៀវកិត្តិយសក្នុងថ្ងៃដ៏វិសេសវិសាលរបស់យើង។</p>
+      <p class="section-intro english-text lang-en">We are absolutely delighted to have you join us as our honored guests on this most special day of our lives.</p>
+    </div>
+
+    <div class="thankyou-card-wrapper reveal-on-scroll">
+      <!-- Traditional Royal Crimson Red Card with Gold Details -->
+      <div class="thankyou-card">
+        <div class="thankyou-message-content">
+          <!-- Khmer traditional Sampeah greeting SVG hands -->
+          <div class="message-icon khmer-sampeah-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 100 100" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M50 20 C47 38 38 58 35 66 C32 74 41 84 50 84" />
+              <path d="M50 20 C53 38 62 58 65 66 C68 74 59 84 50 84" />
+              <path d="M50 20 L50 84" stroke-dasharray="1 2" stroke-width="1"/>
+              <path d="M47 30 C45 40 40 50 38 58" stroke-width="0.8" />
+              <path d="M53 30 C55 40 60 50 62 58" stroke-width="0.8" />
+              <path d="M44 42 C43 49 40 57 39 62" stroke-width="0.8" />
+              <path d="M56 42 C57 49 60 57 61 62" stroke-width="0.8" />
+              <path d="M50 12 C40 10 30 25 35 45 C20 40 10 50 20 68 C25 75 35 85 50 90" stroke-width="0.75" stroke-dasharray="3,3" />
+              <path d="M50 12 C60 10 70 25 65 45 C80 40 90 50 80 68 C75 75 65 85 50 90" stroke-width="0.75" stroke-dasharray="3,3" />
+            </svg>
+          </div>
+          
+          <h3 class="message-title lang-kh">សូមអរគុណយ៉ាងជ្រាលជ្រៅ</h3>
+          <h3 class="message-title lang-en">Our Deepest Thanks</h3>
+          
+          <p class="message-text lang-kh">វត្តមានដ៏ខ្ពង់ខ្ពស់របស់ ឯកឧត្តម លោកជំទាវ លោកឧកញ៉ា លោក លោកស្រី អ្នកនាងកញ្ញា គឺជាកិត្តិយសដ៏ធំធេងសម្រាប់ក្រុមគ្រួសារយើងខ្ញុំ។ សូមជូនពរលោកអ្នកជួបប្រទះតែសេចក្តីសុខ សុភមង្គល និងជោគជ័យគ្រប់ភារកិច្ច។<br/><br/>សូមអរគុណសម្រាប់ការចែករំលែកសេចក្តីរីករាយ និងចូលរួមជាផ្នែកមួយនៃរឿងរ៉ាវរបស់យើង។</p>
+          <p class="message-text lang-en">Your presence is the greatest gift we could ask for. Thank you for celebrating our love story with us. We wish you endless joy, health, and prosperity in the years to come.<br/><br/>Thank you for sharing in our joy and being a part of our story.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .thankyou-section {
+    padding: 120px 24px;
+    background-color: var(--bg-secondary);
+    position: relative;
+  }
+
+  .thankyou-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 80px auto;
+  }
+
+  .section-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-gold);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle .lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+  }
+
+  .section-title {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .section-title.khmer-title {
+    font-family: var(--font-khmer-header);
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+
+  .section-title.english-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+  }
+
+  .khmer-ornament-divider {
+    margin: 16px auto 28px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .section-intro {
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 620px;
+  }
+
+  .section-intro.khmer-text {
+    font-family: var(--font-khmer-body);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .section-intro.english-text {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  /* Traditional Khmer Silk Card (Crimson & Gold) */
+  .thankyou-card-wrapper {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .thankyou-card {
+    background: linear-gradient(135deg, var(--accent-red) 0%, #4A0E10 100%);
+    border-radius: 20px;
+    padding: 60px;
+    border: 2px solid var(--accent-gold); /* Gold border wrapper */
+    box-shadow: 0 25px 60px rgba(74, 14, 16, 0.25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Stylized gold leaf overlays inside card corners */
+  .thankyou-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-top: 2px solid var(--accent-gold);
+    border-left: 2px solid var(--accent-gold);
+    border-top-left-radius: 12px;
+    margin: 10px;
+    pointer-events: none;
+  }
+
+  .thankyou-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-bottom: 2px solid var(--accent-gold);
+    border-right: 2px solid var(--accent-gold);
+    border-bottom-right-radius: 12px;
+    margin: 10px;
+    pointer-events: none;
+  }
+
+  /* Message Content */
+  .thankyou-message-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .khmer-sampeah-icon {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Render clasped hands in gold */
+  .khmer-sampeah-icon svg {
+    stroke: var(--accent-gold);
+  }
+
+  .message-title {
+    color: #FFFFFF;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .message-title.lang-kh {
+    font-family: var(--font-khmer-header);
+    font-size: 2.2rem;
+    font-weight: normal;
+    margin-bottom: 6px;
+  }
+
+  .message-title.lang-en {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+
+  .message-text {
+    max-width: 520px;
+    line-height: 1.75;
+  }
+
+  .message-text.lang-kh {
+    font-family: var(--font-khmer-body);
+    font-size: 1.05rem;
+    color: #FAF7F2;
+    margin-bottom: 12px;
+  }
+
+  .message-text.lang-en {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: rgba(250, 247, 242, 0.85);
+  }
+
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .thankyou-card {
+      padding: 40px 24px;
+    }
+  }
+</style>

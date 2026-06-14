@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import Timeline from '../components/Timeline.astro';
 import Gallery from '../components/Gallery.astro';
 import Details from '../components/Details.astro';
+import ThankYou from '../components/ThankYou.astro';
 import RSVP from '../components/RSVP.astro';
 ---
 
@@ -15,20 +16,12 @@ import RSVP from '../components/RSVP.astro';
 		<Timeline />
 		<Gallery />
 		<Details />
+		<ThankYou />
 		<RSVP />
 	</main>
 	
 	<footer class="wedding-footer">
 		<div class="footer-content">
-			<div class="footer-initials">
-				<span class="lang-kh logo-kh">ដារ៉ូ <span class="heart-icon">&hearts;</span> កូនក្រមុំ</span>
-				<span class="lang-en">Daro <span class="heart-icon">&hearts;</span> Bride</span>
-			</div>
-			<p class="footer-thanks">
-				<span class="lang-kh">សូមអរគុណសម្រាប់ការចែករំលែកសេចក្តីរីករាយ និងចូលរួមជាផ្នែកមួយនៃរឿងរ៉ាវរបស់យើង។</span>
-				<span class="lang-en">Thank you for sharing in our joy and being a part of our story.</span>
-			</p>
-			<div class="footer-divider"></div>
 			<p class="footer-copyright">
 				<span class="lang-kh">&copy; ២០២៦ ដារ៉ូ និង កូនក្រមុំ។ រៀបចំឡើងដោយសេចក្តីស្រឡាញ់។</span>
 				<span class="lang-en">&copy; 2026 Daro and Bride. Made with love.</span>
@@ -39,10 +32,9 @@ import RSVP from '../components/RSVP.astro';
 
 <style>
 	.wedding-footer {
-		background-color: var(--bg-primary);
-		padding: 80px 24px;
+		background-color: transparent;
+		padding: 40px 24px;
 		text-align: center;
-		border-top: 1px solid var(--border-color);
 		position: relative;
 	}
 
@@ -71,29 +63,6 @@ import RSVP from '../components/RSVP.astro';
 		color: var(--accent-red);
 		margin: 0 10px; /* Spaced out heart to prevent Khmer character overlapping */
 		display: inline-block;
-	}
-
-	.footer-thanks {
-		font-family: var(--font-serif);
-		font-style: italic;
-		font-size: 1.25rem;
-		color: var(--text-primary);
-		margin-bottom: 32px;
-		line-height: 1.6;
-	}
-
-	.footer-thanks span.lang-kh {
-		font-family: var(--font-khmer-body);
-		font-size: 1.15rem;
-		font-style: normal;
-		line-height: 1.7;
-	}
-
-	.footer-divider {
-		width: 40px;
-		height: 1px;
-		background-color: var(--border-color);
-		margin: 0 auto 24px auto;
 	}
 
 	.footer-copyright {
