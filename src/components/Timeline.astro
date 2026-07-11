@@ -1,6 +1,39 @@
 ---
 // Timeline.astro - Our Love Story Timeline (Bilingual)
 import { getCloudinaryUrl } from '../utils/cloudinary';
+
+const timelineEvents = [
+  {
+    id: 'v1781029920/story_meet_rzyoq8.jpg',
+    alt: 'First Meet',
+    dateKh: '១២ តុលា ២០២១',
+    dateEn: 'October 12, 2021',
+    titleKh: 'ការជួបគ្នាលើកដំបូង',
+    titleEn: 'The First Meeting',
+    textKh: 'វាបានចាប់ផ្តើមដោយការស្វាគមន៍យ៉ាងកក់ក្តៅ និងសាមញ្ញបំផុត។ យើងបានជួបគ្នានៅហាងកាហ្វេតូចមួយ ដែលការស្រឡាញ់សៀវភៅ និងរសជាតិកាហ្វេដូចគ្នា បានទាក់ទាញចិត្តយើងឱ្យជជែកគ្នាលេងអស់ជាច្រើនម៉ោងដោយភាពរីករាយក្រៃលែង និងដឹងថាយើងមាននិស្ស័យជាមួយគ្នា។',
+    textEn: 'It all started with a simple hello. We crossed paths at a cozy local cafe where a shared love for books and warm coffee sparked an unexpected conversation that lasted for hours.'
+  },
+  {
+    id: 'v1781029914/gallery_1_zxf2e1.jpg',
+    alt: 'First Date',
+    dateKh: '០៥ ធ្នូ ២០២១',
+    dateEn: 'December 05, 2021',
+    titleKh: 'ការណាត់ជួបដំបូង',
+    titleEn: 'Our First Date',
+    textKh: 'ការណាត់ជួបជាផ្លូវការដំបូងរបស់យើង គឺជាការដើរលំហែកាយយ៉ាងមនោរម្យនៅក្នុងសួនច្បារដែលពោរពេញទៅដោយពន្លឺថ្ងៃនាដូវស្លឹកឈើជ្រុះ។ ការដើរទន្ទឹមគ្នា ការចែករំលែកក្តីស្រមៃ និងការសើចសប្បាយជាមួយគ្នា ធ្វើឱ្យយើងដឹងថាមានអ្វីម្យ៉ាងកំពុងចាប់ផ្តើមរីកដុះដាលនៅក្នុងចិត្តរៀងៗខ្លួន។',
+    textEn: 'Our first official date was a magical walk in a sun-drenched autumn park. Walking side-by-side on paths carpeted with golden leaves, sharing our dreams and laughing together, we felt an undeniable connection.'
+  },
+  {
+    id: 'v1781029923/story_proposal_vawcup.jpg',
+    alt: 'The Proposal',
+    dateKh: '២១ មិថុនា ២០២៥',
+    dateEn: 'June 21, 2025',
+    titleKh: 'ការសុំរៀបការ',
+    titleEn: 'The Proposal',
+    textKh: 'ក្រោមពន្លឺព្រលប់ដ៏កក់ក្តៅ និងខ្សែភ្លើងលម្អយ៉ាងស្រស់ស្អាតលើកំពូលភ្នំដែលមើលទៅឃើញផ្ទៃសមុទ្រដ៏ធំល្វឹងល្វើយ ដារ៉ូបានសួរពាក្យស្នើសុំដ៏សំខាន់បំផុតក្នុងជីវិត។ កូនក្រមុំបានឆ្លើយយល់ព្រមទាំងទឹកភ្នែករំភើប និងស្នាមញញឹមដ៏មានសុភមង្គល។ វាជាការសម្រេចចិត្តដ៏ងាយស្រួល និងរីករាយបំផុត។',
+    textEn: 'Under the warm twilight glow of fairy lights on a breathtaking clifftop overlooking the sea, Daro asked the question of a lifetime. Surrounded by the sound of waves and soft music, Bride said yes with tears of joy.'
+  }
+];
 ---
 <section id="story" class="story-section">
   <div class="story-container">
@@ -32,71 +65,28 @@ import { getCloudinaryUrl } from '../utils/cloudinary';
     <div class="timeline">
       <div class="timeline-line"></div>
 
-      <!-- Node 1 -->
-      <div class="timeline-item reveal-on-scroll">
-        <div class="timeline-img-container">
-          <img src={getCloudinaryUrl('story_meet', { width: 800 })} alt="First Meet" class="timeline-img" loading="lazy" />
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-date">
-            <span class="lang-kh">១២ តុលា ២០២១</span>
-            <span class="lang-en">October 12, 2021</span>
+      {timelineEvents.map((event) => (
+        <div class="timeline-item reveal-on-scroll">
+          <div class="timeline-img-container">
+            <img src={getCloudinaryUrl(event.id, { width: 800 })} alt={event.alt} class="timeline-img" loading="lazy" />
           </div>
-          <h3 class="timeline-title">
-            <span class="lang-kh">ការជួបគ្នាលើកដំបូង</span>
-            <span class="lang-en">The First Meeting</span>
-          </h3>
-          <p class="timeline-text">
-            <span class="lang-kh">វាបានចាប់ផ្តើមដោយការស្វាគមន៍យ៉ាងកក់ក្តៅ និងសាមញ្ញបំផុត។ យើងបានជួបគ្នានៅហាងកាហ្វេតូចមួយ ដែលការស្រឡាញ់សៀវភៅ និងរសជាតិកាហ្វេដូចគ្នា បានទាក់ទាញចិត្តយើងឱ្យជជែកគ្នាលេងអស់ជាច្រើនម៉ោងដោយភាពរីករាយក្រៃលែង និងដឹងថាយើងមាននិស្ស័យជាមួយគ្នា។</span>
-            <span class="lang-en">It all started with a simple hello. We crossed paths at a cozy local cafe where a shared love for books and warm coffee sparked an unexpected conversation that lasted for hours.</span>
-          </p>
-        </div>
-        <div class="timeline-dot"></div>
-      </div>
-
-      <!-- Node 2 -->
-      <div class="timeline-item reveal-on-scroll">
-        <div class="timeline-img-container">
-          <img src={getCloudinaryUrl('gallery_1', { width: 800 })} alt="First Date" class="timeline-img" loading="lazy" />
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-date">
-            <span class="lang-kh">០៥ ធ្នូ ២០២១</span>
-            <span class="lang-en">December 05, 2021</span>
+          <div class="timeline-content">
+            <div class="timeline-date">
+              <span class="lang-kh">{event.dateKh}</span>
+              <span class="lang-en">{event.dateEn}</span>
+            </div>
+            <h3 class="timeline-title">
+              <span class="lang-kh">{event.titleKh}</span>
+              <span class="lang-en">{event.titleEn}</span>
+            </h3>
+            <p class="timeline-text">
+              <span class="lang-kh">{event.textKh}</span>
+              <span class="lang-en">{event.textEn}</span>
+            </p>
           </div>
-          <h3 class="timeline-title">
-            <span class="lang-kh">ការណាត់ជួបដំបូង</span>
-            <span class="lang-en">Our First Date</span>
-          </h3>
-          <p class="timeline-text">
-            <span class="lang-kh">ការណាត់ជួបជាផ្លូវការដំបូងរបស់យើង គឺជាការដើរលំហែកាយយ៉ាងមនោរម្យនៅក្នុងសួនច្បារដែលពោរពេញទៅដោយពន្លឺថ្ងៃនាដូវស្លឹកឈើជ្រុះ។ ការដើរទន្ទឹមគ្នា ការចែករំលែកក្តីស្រមៃ និងការសើចសប្បាយជាមួយគ្នា ធ្វើឱ្យយើងដឹងថាមានអ្វីម្យ៉ាងកំពុងចាប់ផ្តើមរីកដុះដាលនៅក្នុងចិត្តរៀងៗខ្លួន។</span>
-            <span class="lang-en">Our first official date was a magical walk in a sun-drenched autumn park. Walking side-by-side on paths carpeted with golden leaves, sharing our dreams and laughing together, we felt an undeniable connection.</span>
-          </p>
+          <div class="timeline-dot"></div>
         </div>
-        <div class="timeline-dot"></div>
-      </div>
-
-      <!-- Node 3 -->
-      <div class="timeline-item reveal-on-scroll">
-        <div class="timeline-img-container">
-          <img src={getCloudinaryUrl('story_proposal', { width: 800 })} alt="The Proposal" class="timeline-img" loading="lazy" />
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-date">
-            <span class="lang-kh">២១ មិថុនា ២០២៥</span>
-            <span class="lang-en">June 21, 2025</span>
-          </div>
-          <h3 class="timeline-title">
-            <span class="lang-kh">ការសុំរៀបការ</span>
-            <span class="lang-en">The Proposal</span>
-          </h3>
-          <p class="timeline-text">
-            <span class="lang-kh">ក្រោមពន្លឺព្រលប់ដ៏កក់ក្តៅ និងខ្សែភ្លើងលម្អយ៉ាងស្រស់ស្អាតលើកំពូលភ្នំដែលមើលទៅឃើញផ្ទៃសមុទ្រដ៏ធំល្វឹងល្វើយ ដារ៉ូបានសួរពាក្យស្នើសុំដ៏សំខាន់បំផុតក្នុងជីវិត។ កូនក្រមុំបានឆ្លើយយល់ព្រមទាំងទឹកភ្នែករំភើប និងស្នាមញញឹមដ៏មានសុភមង្គល។ វាជាការសម្រេចចិត្តដ៏ងាយស្រួល និងរីករាយបំផុត។</span>
-            <span class="lang-en">Under the warm twilight glow of fairy lights on a breathtaking clifftop overlooking the sea, Daro asked the question of a lifetime. Surrounded by the sound of waves and soft music, Bride said yes with tears of joy.</span>
-          </p>
-        </div>
-        <div class="timeline-dot"></div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
