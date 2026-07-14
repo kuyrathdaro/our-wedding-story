@@ -122,16 +122,16 @@
     const formData = new FormData(wishForm);
     const message = formData.get('message');
     
+    // Add a capitalized version of the key just in case the Google Sheet column is named "Message" (case-sensitive)
+    if (message) formData.append('Message', message);
+    
     try {
       if (scriptUrl) {
         // Post directly to Google Apps Script if configured
         await fetch(scriptUrl, {
           method: 'POST',
           mode: 'no-cors', // Essential for Google Apps Script to not block the request
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: new URLSearchParams(formData).toString()
+          body: formData
         });
       } else {
         // Fallback demo timeout if no URL configured
